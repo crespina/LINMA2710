@@ -688,7 +688,7 @@ md"""
 * Consider graph ``G`` with nodes ``v`` corresponding to computer nodes or switches.
 * There is an edge ``(u, v) \in E`` if there is an ethernet cable **directly** connecting ``u`` and ``v``.
 *  ``e \in E`` are ethernet cables of bandwidth ``w_e``
-* Distance (unweighted) from node ``i \in V`` to node ``j \in V`` is ``d(G, i, j)``
+* Distance (unweighted) from node ``u \in V`` to node ``v \in V`` is ``d(G, u, v)``
   - Does not depend on bandwidth ``w_e`` of edges of the path
 """
 

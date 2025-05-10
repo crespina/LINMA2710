@@ -803,7 +803,7 @@ img("https://raw.githubusercontent.com/VictorEijkhout/TheArtOfHPC_vol1_scientifi
 Foldable(md"What is the graph diameter of a ``n \times n`` 2D array ?",
 md"""
 It is ``2(n-1)``, attained for opposite vertices of the square.
-$(Foldable(md"What is the bisection width of a ``n^d`` ``d``D array ?",
+$(Foldable(md"What is the graph diameter of a ``n^d`` ``d``D array ?",
 md"It is ``d(n-1)``, attained for opposite vertices of the hypercube."))
 """)
 

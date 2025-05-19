@@ -82,11 +82,12 @@ jobs:
                     Export_baked_notebookfile=false,
                     Export_baked_state=false,
                     # more parameters can go here
-                  )'
+                  )
+                  @show pwd()
+                  @show isfile("Lectures/5_power.pdf")'
 
             - name: Deploy to gh-pages
               uses: JamesIves/github-pages-deploy-action@releases/v4
-              if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   branch: gh-pages

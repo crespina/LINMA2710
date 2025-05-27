@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.4
+# v0.20.8
 
 using Markdown
 using InteractiveUtils
@@ -7,7 +7,7 @@ using InteractiveUtils
 # This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
 macro bind(def, element)
     #! format: off
-    quote
+    return quote
         local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
         local el = $(esc(element))
         global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
@@ -922,7 +922,7 @@ Pkg.instantiate()
 biblio = load_biblio!();
 
 # ╔═╡ 2504c31b-ea38-403f-931a-8ebb72e73af4
-bibrefs(biblio, "eijkhout2017Parallel")
+bibrefs(biblio, ["eijkhout2010Introduction", "eijkhout2017Parallel"])
 
 # ╔═╡ 3a50ca06-06e8-4a61-ade2-afbfc52ca655
 aside(md"""See $(bibcite(biblio, "eijkhout2017Parallel", "Section 4.1.4.2"))""", v_offset = -100)
@@ -933,6 +933,24 @@ md"""
 * Specified in [Slurm's `topology.conf` file](https://slurm.schedmd.com/topology.conf.html).
 * Source : $(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7"))
 """
+
+# ╔═╡ d7117a24-aba6-4479-a40e-5005310a6b38
+aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.3"), v_offset = -150)
+
+# ╔═╡ 8f46daf1-9ca2-4a08-99aa-4ed68af218b8
+aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.4"), v_offset = -150)
+
+# ╔═╡ a0566fdb-a08d-4bcf-9b2f-ed211c9f111f
+aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.5"), v_offset = -150)
+
+# ╔═╡ 61af27f1-9f83-42f1-a419-06d12ea62133
+aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.6.1"), v_offset = -150)
+
+# ╔═╡ 488b0c17-4f0f-43bf-a16c-b9faa7ae0595
+aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.6.3"), v_offset = -150)
+
+# ╔═╡ 16f8d28b-f201-4fe5-8446-68d7d9ddfb3c
+aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.6.2"), v_offset = -250)
 
 # ╔═╡ a59db59c-d34e-4abd-8865-9907607e06a8
 aside(md"""From $(bibcite(biblio, "eijkhout2010Introduction", "Figure 2.27"))""", v_offset = -200)
@@ -1055,17 +1073,21 @@ img1("crossbar.jpg"),
 # ╟─fc705b81-7310-44cc-ad9f-dc2cf8a9b645
 # ╟─86394e1c-0ff4-449a-8940-4b5906d8b6f0
 # ╟─23bfbe95-7ba2-41b9-bd8b-dc4baa3ad53a
+# ╟─d7117a24-aba6-4479-a40e-5005310a6b38
 # ╟─2257220c-6f0e-4edf-9fea-7e388b84df9b
 # ╟─39b055f5-3dbf-403c-b21e-210e3813d8b0
 # ╟─2e4dc3f9-a132-444f-a35d-f583823a7dfd
 # ╟─b68eb860-a5b4-4e9e-9fbf-6eb6ce43ae69
+# ╟─8f46daf1-9ca2-4a08-99aa-4ed68af218b8
 # ╟─2c84bd84-b54d-4594-b9f8-35db2124d7e8
 # ╟─4309dc43-aeb8-4ec7-94fe-0e320b784349
 # ╟─f6f9447c-9bc9-432d-bd80-2c39f9d842f8
 # ╟─1551122c-70ae-4e37-b3fb-4be91fcc4afb
+# ╟─a0566fdb-a08d-4bcf-9b2f-ed211c9f111f
 # ╟─e796b093-9c1d-4656-9acb-918de53f7e4d
 # ╟─d04b9af5-f004-4ca4-b1c9-2c86d46cb37d
 # ╟─97d3cf3f-ddac-4850-8b05-bdc0c4741f61
+# ╟─61af27f1-9f83-42f1-a419-06d12ea62133
 # ╟─143dca7c-f9a4-472a-a4bc-4578e4e8413b
 # ╟─1bac238f-79c8-4f9f-a187-bacb288de3b0
 # ╟─e4d1de1d-d57a-48ab-ad7a-c09b427daa03
@@ -1074,10 +1096,12 @@ img1("crossbar.jpg"),
 # ╟─4aac6ab5-053a-4f60-9e2e-e8d61ff0cecb
 # ╟─b53ec488-ff25-4647-ab00-fbf90963a795
 # ╟─de72d596-0daf-4629-bbb5-20bb8a67cbed
+# ╟─488b0c17-4f0f-43bf-a16c-b9faa7ae0595
 # ╟─10a1b3a7-21c7-4f97-93e1-006ad3aea40d
 # ╟─f7f097cb-d7bd-49eb-a030-ac26f8f61a67
 # ╟─3ec3c058-a94d-4717-b99f-66373f2fa31d
 # ╟─6041a909-d26c-4ab1-836b-29953c578759
+# ╟─16f8d28b-f201-4fe5-8446-68d7d9ddfb3c
 # ╟─a59db59c-d34e-4abd-8865-9907607e06a8
 # ╟─f2417047-33fc-4489-8e89-115bc6b46c13
 # ╟─82e1ea5e-f8e0-11ef-0f93-49a66050feaf

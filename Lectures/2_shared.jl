@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.4
+# v0.20.6
 
 using Markdown
 using InteractiveUtils
@@ -7,7 +7,7 @@ using InteractiveUtils
 # This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
 macro bind(def, element)
     #! format: off
-    quote
+    return quote
         local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
         local el = $(esc(element))
         global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
@@ -451,8 +451,8 @@ Assuming `factor` is `2`, there is one operation for each of the ``\log_2(p)`` s
 # ╔═╡ d1aef3d4-33d1-4151-8ba3-2169f734ea6b
 Foldable(md"How to get ``1/F_s = \lim_{p \to \infty} S_p`` ?", md"""
 The algorithm cannot use more than ``n`` processes so if ``p \ge n``, we have
-``T_p = \log_2(n)``.
-Therefore, ``\lim_{p \to \infty} S_p = \frac{1}{\log_2(n)}`` hence ``F_s = \log_2(n)``.
+``T_p = 1 + \log_2(n)``.
+Therefore, ``\lim_{p \to \infty} S_p = S_n = \frac{n}{1 + \log_2(n)}``. Ignoring the constant ``1``, we get ``F_s = \log_2(n)/n``.
 """)
 
 # ╔═╡ dadaf83a-ac35-4a04-827a-1e4e69177e04

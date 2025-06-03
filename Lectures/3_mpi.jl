@@ -862,7 +862,7 @@ img("https://ars.els-cdn.com/content/image/3-s2.0-B9781558608528500043-f01-10-97
 # ╔═╡ 97d3cf3f-ddac-4850-8b05-bdc0c4741f61
 Foldable(md"What are the number of switches, edges, graph diameter and bisection width for ``n`` computer nodes ?",
 md"""
-* There are ``n^2`` switches one per intersection
+* There are ``n^2`` switches one per intersection. This makes this architecture only suitable for small ``n``.
 * The number of edges is : ``|E| = 2n^2`` which consists of ``n`` connections from an input to a switch, ``n`` connections from a switch to an output and ``2n(n-1)`` connections between switches.
 * The diameter 2 if we don't count the in-between switches or ``2n`` if we coun't them.
 * The bisection width is ``n/2``.

@@ -847,10 +847,25 @@ $(img("https://raw.githubusercontent.com/VictorEijkhout/TheArtOfHPC_vol1_scienti
 # ╔═╡ e796b093-9c1d-4656-9acb-918de53f7e4d
 frametitle("Crossbar")
 
+# ╔═╡ d04b9af5-f004-4ca4-b1c9-2c86d46cb37d
+md"""
+* Each node input is a row and each a node output is a column; [source of figure below](https://www.sciencedirect.com/topics/computer-science/crossbar-network).
+* Each intersection is a switch. The cases (a) and (c) represent conflicting cases where two inputs want to simultaneously communicate with the same output.
+"""
+
+# ╔═╡ 655e980d-b4e9-4f56-a5ae-380072242d27
+hbox([
+img("https://ars.els-cdn.com/content/image/3-s2.0-B9781558608528500043-f01-09-9781558608528.jpg"),
+img("https://ars.els-cdn.com/content/image/3-s2.0-B9781558608528500043-f01-10-9781558608528.jpg"),
+])
+
 # ╔═╡ 97d3cf3f-ddac-4850-8b05-bdc0c4741f61
 Foldable(md"What are the number of switches, edges, graph diameter and bisection width for ``n`` computer nodes ?",
 md"""
-``2n(n-1)`` switches, ``|E| = 4n(n-1)``, diameter is 2 and bisection width is ``n/2``.
+* There are ``n^2`` switches one per intersection
+* The number of edges is : ``|E| = 2n^2`` which consists of ``n`` connections from an input to a switch, ``n`` connections from a switch to an output and ``2n(n-1)`` connections between switches.
+* The diameter 2 if we don't count the in-between switches or ``2n`` if we coun't them.
+* The bisection width is ``n/2``.
 """)
 
 # ╔═╡ 143dca7c-f9a4-472a-a4bc-4578e4e8413b
@@ -952,7 +967,7 @@ aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.4"), v_offset = -
 aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.5"), v_offset = -150)
 
 # ╔═╡ 61af27f1-9f83-42f1-a419-06d12ea62133
-aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.6.1"), v_offset = -150)
+aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.6.1"), v_offset = -200)
 
 # ╔═╡ 488b0c17-4f0f-43bf-a16c-b9faa7ae0595
 aside(bibcite(biblio, "eijkhout2010Introduction", "Section 2.7.6.3"), v_offset = -150)
@@ -969,12 +984,11 @@ aside(md"""From $(bibcite(biblio, "eijkhout2010Introduction", "Figure 2.30"))"""
 # ╔═╡ 1152dec8-3810-42b1-bb2a-8755dcaef56c
 img1(f, args...) = img("https://raw.githubusercontent.com/VictorEijkhout/TheArtOfHPC_vol1_scientificcomputing/refs/heads/main/booksources/graphics/$f", args...)
 
-# ╔═╡ d04b9af5-f004-4ca4-b1c9-2c86d46cb37d
+# ╔═╡ 133f4c7d-33e0-4e13-b716-f538125436ca
 hbox([
 Div(md"""
-* Each dot is a node
-* Each intersection is a switch
-$(Foldable("What is the underlying graph between nodes", "Complete directed graph"))
+There can be ``n`` simultaneous communication at the same time, provided that each input communicate with a different output.
+The figure on the right provides an example of such non-conflicting communication with the black dots indicating that the input of that row communicates to the corresponding output (case (a) of above figure). The switch at row 1 and column 2 is just propagating the input data horizontally and output data vertically (case (b) of above figure). The switch at row 0 and column 5 is receiving no data.
 """, style = Dict("flex-grow" => "1")),
 img1("crossbar.jpg"),
 ])
@@ -1094,6 +1108,8 @@ img1("crossbar.jpg"),
 # ╟─a0566fdb-a08d-4bcf-9b2f-ed211c9f111f
 # ╟─e796b093-9c1d-4656-9acb-918de53f7e4d
 # ╟─d04b9af5-f004-4ca4-b1c9-2c86d46cb37d
+# ╟─655e980d-b4e9-4f56-a5ae-380072242d27
+# ╟─133f4c7d-33e0-4e13-b716-f538125436ca
 # ╟─97d3cf3f-ddac-4850-8b05-bdc0c4741f61
 # ╟─61af27f1-9f83-42f1-a419-06d12ea62133
 # ╟─143dca7c-f9a4-472a-a4bc-4578e4e8413b

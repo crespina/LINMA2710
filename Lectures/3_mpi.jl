@@ -151,7 +151,7 @@ hbox([
 
 # ╔═╡ 5d72bf87-7f3a-4229-9d7a-2e63c115087d
 Foldable(
-	md"Lower bound complexity for ``n`` bytes with ``p`` processes ?",
+	md"Lower bound complexity with ``p`` processes if ``x`` has  length ``n`` bytes ?",
 	md"""Lower bound : ``\log_2(p) (\alpha + \beta n)`` using *spanning tree* algorithm:
 
 After first communication (1 → 3):
@@ -196,7 +196,7 @@ hbox([
 
 # ╔═╡ 233c13ff-f008-40b0-a6c5-c5395b2215ec
 Foldable(
-	md"Lower bound complexity with ``p`` processes if ``x_i`` has length ``n/p`` bytes ?",
+	md"Lower bound complexity with ``p`` processes if each ``x_i`` has length ``n/p`` bytes ?",
 	md"""
 Lower bound : ``\log_2(p) \alpha`` using *spanning tree* algorithm and ``\beta n`` as all message need to sent at least once. *spanning tree* is advantageous if ``\alpha`` is larger than ``\beta`` and direct to `1` if otherwise. In practice, you want a mix of both.
 
@@ -249,7 +249,7 @@ hbox([
 
 # ╔═╡ db16e939-b490-497b-a03f-80ce2e8485af
 Foldable(
-	md"Lower bound complexity for ``n`` bytes with ``p`` processes and arithmetic complexity ``\gamma`` ?",
+	md"Lower bound complexity with ``p`` processes if each ``x_i`` has length $n$ bytes and the arithmetic complexity is ``\gamma`` ?",
 	md"""Lower bound : ``\log_2(p) (\alpha + \beta n) + \log_2(p) \gamma n`` using *spanning tree* algorithm:
 
 First communication (2 → 1 and 4 → 3 at the same time):
@@ -297,8 +297,12 @@ Foldable(
 Would it be more efficient to have a specialized implementation instead of combining existing collectives ?
 """,
 	md"""
-Let the size of `x_i` be ``n/p``. `MPI_Gather` has complexity ``\log_2(p)\alpha + \beta n`` and `MPI_Bcast` has complexity ``\log_2(p) (\alpha + \beta n)``
-so in total ``\log_2(p) (\alpha + \beta n)``. Can we do better ?
+Let the size of ``x_i`` be ``n/p`` bytes.
+
+1. `MPI_Gather` has complexity ``\log_2(p)\alpha + \beta n``
+2. `MPI_Bcast` acts on the concatenation ``x_:`` which has length ``n`` bytes so the complexity is  ``\log_2(p) (\alpha + \beta n)``
+
+In total, we have the complexity ``\log_2(p) (\alpha + \beta n)``. Can we do better ?
 
 Start exchanging between 1 and 2 and simultaneously exchanging between 3 and 4.
 The complexity is ``\alpha + \beta n/4``.
@@ -359,8 +363,12 @@ Foldable(
 Would it be more efficient to have a specialized implementation instead of combining existing collectives ?
 """,
 	md"""
-Let the size of ``x_i`` be ``n/p``. `MPI_Reduce` has complexity ``\log_2(p)(\alpha + \beta n + \gamma n)`` and `MPI_Scatter` has complexity ``\log_2(p) \alpha + \beta n``
-so in total ``\log_2(p) (\alpha + \beta n)``. Can we do better ?
+Let the size of each ``x_{i,j}`` be ``n/p`` bytes.
+
+1. `MPI_Reduce` acts on the concatenation ``x_{:,j}`` which has length ``n`` bytes hence the complexity is ``\log_2(p)(\alpha + \beta n + \gamma n)``
+2. `MPI_Scatter` has the same complexity as `MPI_Gather` (since it's the same but backwards in time) : ``\log_2(p) \alpha + \beta n``
+
+In total, we have the complexity ``\log_2(p) (\alpha + \beta n)``. Can we do better ?
 
 Start exchanging between 1 and 2 and simultaneously exchanging between 3 and 4.
 The complexity is ``\alpha + 2(\beta + \gamma) n/4``.
@@ -411,7 +419,7 @@ vbox([
 Foldable(
 	md"Can `MPI_Allreduce` be implemented by combining existing collectives ?",
 	md"""
-`MPI_Allreduce` can be implemented either by combining `MPI_Reduce` followed by `MPI_Bcast` or `MPI_Reduce_scatter` followed by `MPI_Allgather`.
+Let the size of each ``x_i`` be ``n`` bytes. `MPI_Allreduce` can be implemented either by combining `MPI_Reduce` followed by `MPI_Bcast` or `MPI_Reduce_scatter` followed by `MPI_Allgather`.
 The first choice would lead to a complexity of ``\log_2(p)(\alpha + \beta n)``
 The second would lead to a complexity of ``\log_2(p)\alpha + \beta n``.
 """,

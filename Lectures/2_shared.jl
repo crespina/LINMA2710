@@ -421,8 +421,8 @@ frametitle("Amdahl's law")
 
 # ╔═╡ 4b7a62a4-1e88-410b-8549-3021f6cdf6da
 md"""
-* ``F_s`` : Percentage of ``T_1`` that is sequential
-* ``F_p = 1 - F_s`` : Percentage of ``T_1`` that is parallelizable
+* ``F_s`` : Fraction of ``T_1`` that is sequential
+* ``F_p = 1 - F_s`` : Fraction of ``T_1`` that is parallelizable
 
 ```math
 \begin{align}

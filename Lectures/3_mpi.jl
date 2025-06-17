@@ -368,7 +368,7 @@ Let the size of each ``x_{i,j}`` be ``n/p`` bytes.
 1. `MPI_Reduce` acts on the concatenation ``x_{:,j}`` which has length ``n`` bytes hence the complexity is ``\log_2(p)(\alpha + \beta n + \gamma n)``
 2. `MPI_Scatter` has the same complexity as `MPI_Gather` (since it's the same but backwards in time) : ``\log_2(p) \alpha + \beta n``
 
-In total, we have the complexity ``\log_2(p) (\alpha + \beta n)``. Can we do better ?
+In total, we have the complexity ``\log_2(p) (\alpha + \beta n + \gamma n)``. Can we do better ?
 
 Start exchanging between 1 and 2 and simultaneously exchanging between 3 and 4.
 The complexity is ``\alpha + 2(\beta + \gamma) n/4``.
@@ -392,6 +392,7 @@ In total, we have complexity
   \log_2(p) \alpha + (\beta + \gamma) n.
 \end{align}
 ```
+This is better than the approaches combining existing collectives above since we removed the ``\log_2(p)`` in front of ``\beta`` and ``\gamma``.
 """,
 )
 
@@ -420,8 +421,9 @@ Foldable(
 	md"Can `MPI_Allreduce` be implemented by combining existing collectives ?",
 	md"""
 Let the size of each ``x_i`` be ``n`` bytes. `MPI_Allreduce` can be implemented either by combining `MPI_Reduce` followed by `MPI_Bcast` or `MPI_Reduce_scatter` followed by `MPI_Allgather`.
-The first choice would lead to a complexity of ``\log_2(p)(\alpha + \beta n + \gamma n )``
+The first choice would lead to a complexity of ``\log_2(p)(\alpha + \beta n + \gamma n )``.
 The second would lead to a complexity of ``\log_2(p)\alpha + \beta n + \gamma n``.
+This second approach is faster for large ``p`` since we removed ``\log_2(p)`` in front of ``\beta`` and ``\gamma``.
 """,
 )
 
